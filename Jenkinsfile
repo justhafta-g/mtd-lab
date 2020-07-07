@@ -45,7 +45,7 @@ pipeline {
                         '''
                     }
                 }
-                stage('nexus') {
+                stage('upload_to_nexus') {
                     steps {
                         script {
                             def baseVersion = readFile 'version.txt'
