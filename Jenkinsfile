@@ -1,7 +1,7 @@
 pipeline {
-    agent {
-        label 'jenkins-slave'
-    }
+    
+    agent any
+
     tools {
         nodejs 'NodeJS-12'
     }
