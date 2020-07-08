@@ -39,7 +39,31 @@ pipeline {
                 git 'https://github.com/justhafta-g/mtd-lab'
             }
         }
+        
+    stage (' Test ') {
+            
+        when{
+               branch 'PR-*'  
+            } 
+        environment {
+        scannerHome = tool 'sonarscanner4'
+          }   
+    
+            steps {
+            
+            withSonarQubeEnv('sonarqube-external') {
+            sh "${scannerHome}/bin/sonar-scanner\
+              -Dsonar.projectKey=student5-project \
+              -Dsonar.sources=. \
+              -Dsonar.host.url=http://server1.jenkins-practice.tk\
+              -Dsonar.login=45cacf83fe2e56ed78b6c11f9fa1acb8461531cc"
+                 }
+        timeout(time: 3, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
+                    }
+            }
 
+        }
         stage('Build') {
             parallel {
                 
