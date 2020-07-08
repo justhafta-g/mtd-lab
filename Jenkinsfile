@@ -1,8 +1,8 @@
 pipeline {
     
-      agent {
-      label 'slave-node'
-    }
+     agent {
+        label 'docker'
+        }
 
     // pipeline parameters
     parameters {
