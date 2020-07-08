@@ -50,11 +50,11 @@ pipeline {
                         script {
                             def baseVersion = readFile 'version.txt'
                             nexusArtifactUploader (
-                                nexusUrl: '54.93.230.9:8081',
+                                nexusUrl: 'https://server2.jenkins-practice.tk',
                                 nexusVersion: 'nexus3', protocol: 'https',
-                                credentialsId: 'nexus-key',
+                                credentialsId: 'student5-key',
                                 groupId: 'site', 
-                                repository: 'raw-mdt-lab',
+                                repository: 'student5-repo',
                                 version: "${baseVersion}-${BUILD_NUMBER}",
                                 artifacts: [
                                     [artifactId: 'archive', classifier: "${baseVersion}-${BUILD_NUMBER}", file: 'archive.tgz', type: 'tgz']
