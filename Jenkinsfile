@@ -62,9 +62,9 @@ pipeline {
                             expression {
                                 params.RELEASE_TYPE == 'TEST'
                             }
-
                         }
-                }
+                    }
+                
 
                     steps {
                         sh label: 'lint CSS', script: """
@@ -103,6 +103,5 @@ pipeline {
             steps {
                 archiveArtifacts '*.tgz'
             }
-        }
     }
 }
