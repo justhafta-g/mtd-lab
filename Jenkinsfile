@@ -52,7 +52,7 @@ pipeline {
                             nexusArtifactUploader (
                                 nexusUrl: 'https://server2.jenkins-practice.tk',
                                 nexusVersion: 'nexus3', protocol: 'https',
-                                credentialsId: 'student5-key',
+                                credentialsId: 'f8190dea-f270-442e-b06b-2c7b87f9d919',
                                 groupId: 'site', 
                                 repository: 'student5-repo',
                                 version: "${baseVersion}-${BUILD_NUMBER}",
