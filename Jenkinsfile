@@ -4,15 +4,15 @@ pipeline {
         label 'docker'
         }
 
-    // pipeline parameters
+    
     parameters {
-        // Release type parameter
+       
         choice (
             name: 'RELEASE_TYPE',
             choices: ['DEVELOP', 'TEST', 'RELEASE'], 
             description: 'Release type selection (DEVELOP|TEST|RELEASE)')
         
-        // Release version parameter
+        
         string (
             name: 'RELEASE_VER', 
             defaultValue: '0.1.1', 
@@ -24,27 +24,26 @@ pipeline {
         buildDiscarder(logRotator(artifactNumToKeepStr: '3', artifactDaysToKeepStr: '5', daysToKeepStr: '5', numToKeepStr: '3'))
         timeout(time: 1, unit: 'HOURS')
         timestamps()
-        // ansiColor('xterm')
+        
     }
 
-    // global tools
     tools {
         nodejs 'Node12'
     }
 
-    // pipeline steps
+    
     stages {
-        // CHECKOUT git repository 
+        
         stage('Checkout') {
             steps {
                 git 'https://github.com/justhafta-g/mtd-lab'
             }
         }
 
-        // BUILD: clean .css files and minimize .js files
+        s
         stage('Build') {
             parallel {
-                // minimize .js files 
+                
                 stage('JS') {
                     steps {
                         sh label: 'minimize JS', script: """
@@ -54,7 +53,7 @@ pipeline {
                     }
                 }
 
-                // lint .css files
+                
                 stage('TEST') {
                     when {
                         allOf {
@@ -74,7 +73,6 @@ pipeline {
                 }
 
 
-                // clean .css files 
                 stage('CSS') {
                     steps {
                         sh label: 'minimize CSS', script: """
@@ -83,7 +81,7 @@ pipeline {
                     }
                 }
                 
-                // tar artifact
+                
                 stage('Tar artifact') {
                     steps {
                         sh label: 'archive', script: """
