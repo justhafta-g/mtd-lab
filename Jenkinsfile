@@ -1,6 +1,8 @@
 pipeline {
     
-    agent any
+      agent {
+      label 'slave-node'
+    }
 
     // pipeline parameters
     parameters {
