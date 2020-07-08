@@ -1,7 +1,7 @@
 pipeline {
     
      agent {
-        label 'docker'
+        label 'demo'
         }
 
     // pipeline parameters
@@ -123,4 +123,3 @@ pipeline {
             sh 'git clean -fdx'
         }
     }
-}
