@@ -118,7 +118,6 @@ pipeline {
                 }
             }
         }
-    }
     post {
         always {
             sh 'git clean -fdx'
