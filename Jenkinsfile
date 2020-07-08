@@ -96,7 +96,6 @@ pipeline {
                 stage('upload_to_nexus') {
                     steps {
                         script {
-                            def baseVersion = readFile 'version.txt'
                             nexusArtifactUploader (
                                 nexusUrl: 'https://server2.jenkins-practice.tk',
                                 nexusVersion: 'nexus3', protocol: 'https',
