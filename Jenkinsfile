@@ -96,10 +96,10 @@ pipeline {
           stage('upload_to_nexus') {
                     steps {
                         script {
-                        nexusArtifactUploader artifacts: [[artifactId: 'site-archive', classifier: '', file: 'site-archive.tgz', type: 'tgz']], credentialsId: 'f8190dea-f270-442e-b06b-2c7b87f9d919', groupId: 'site', nexusUrl: 'server2.jenkins-practice.tk', nexusVersion: 'nexus3', protocol: 'http', repository: 'student5-repo', version: '${RELEASE_TYPE}-${RELEASE_VER}-${BUILD_NUMBER}'
+                        nexusArtifactUploader artifacts: [[artifactId: 'site-archive', classifier: '', file: '*.tgz', type: 'tgz']], credentialsId: 'f8190dea-f270-442e-b06b-2c7b87f9d919', groupId: 'site', nexusUrl: 'server2.jenkins-practice.tk', nexusVersion: 'nexus3', protocol: 'http', repository: 'student5-repo', version: '${RELEASE_TYPE}-${RELEASE_VER}-${BUILD_NUMBER}'
                     }
                 }
             }
-            
+
     }
 }
