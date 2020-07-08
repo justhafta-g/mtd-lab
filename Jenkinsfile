@@ -1,7 +1,7 @@
 pipeline {
     
      agent {
-        label 'demo'
+        label 'docker'
         }
 
     // pipeline parameters
