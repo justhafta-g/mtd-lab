@@ -16,4 +16,4 @@ HTML, CSS, JS
 </ul>
 
 <h2>License</h2>
- Material Design One Page HTML Template is  licensed under the <a href="http://sam.zoy.org/wtfpl/">WTFPL license</a>.
+Material Design One Page HTML Template is  licensed under the <a href="http://sam.zoy.org/wtfpl/">WTFPL license</a>.
