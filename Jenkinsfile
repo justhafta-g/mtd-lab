@@ -93,13 +93,35 @@ pipeline {
                 }
             }
         }
-          stage('upload_to_nexus') {
+                stage('upload_to_nexus') {
                     steps {
                         script {
-                        nexusArtifactUploader artifacts: [[artifactId: 'site-archive', classifier: '', file: 'site-archive.tgz', type: 'tgz']], credentialsId: 'f8190dea-f270-442e-b06b-2c7b87f9d919', groupId: 'site', nexusUrl: 'https://server2.jenkins-practice.tk', nexusVersion: 'nexus3', protocol: 'http', repository: 'student5-repo', version: '${RELEASE_TYPE}-${RELEASE_VER}-${BUILD_NUMBER}'
+                            def baseVersion = readFile 'version.txt'
+                            nexusArtifactUploader (
+                                nexusUrl: 'https://server2.jenkins-practice.tk',
+                                nexusVersion: 'nexus3', protocol: 'https',
+                                credentialsId: 'f8190dea-f270-442e-b06b-2c7b87f9d919',
+                                groupId: 'site', 
+                                repository: 'student5-repo',
+                                version: "${baseVersion}-${BUILD_NUMBER}",
+                                artifacts: [
+                                    [artifactId: 'archive', classifier: "${baseVersion}-${BUILD_NUMBER}", file: 'archive.tgz', type: 'tgz']
+                                ]
+                            )
+                        }
                     }
                 }
             }
-
+            post {
+                success {
+                    writeFile file: '../deploy_version', text: "${baseVersion}-${BUILD_NUMBER}"
+                }
+            }
+        }
+    }
+    post {
+        always {
+            sh 'git clean -fdx'
+        }
     }
 }
