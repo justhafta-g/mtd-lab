@@ -40,7 +40,6 @@ pipeline {
             }
         }
 
-        s
         stage('Build') {
             parallel {
                 
